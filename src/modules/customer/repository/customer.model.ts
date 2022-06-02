@@ -1,4 +1,10 @@
-import {  Column, HasMany, Model, PrimaryKey, Table } from "sequelize-typescript";
+import {
+  Column,
+  HasMany,
+  Model,
+  PrimaryKey,
+  Table,
+} from "sequelize-typescript";
 import { ReviewModel } from "../../review/repository/review.model";
 
 @Table({
@@ -17,10 +23,10 @@ export class CustomerModel extends Model {
   phone: string;
 
   @HasMany(() => ReviewModel)
-  reviews: ReviewModel[]
+  reviews: ReviewModel[];
 
   @Column
-  numberOfReviews: number
+  numberOfReviews: number;
 
   @Column({ allowNull: false })
   createdAt: Date;

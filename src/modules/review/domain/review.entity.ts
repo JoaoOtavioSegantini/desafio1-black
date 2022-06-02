@@ -1,7 +1,8 @@
 import AggregateRoot from "../../@shared/domain/entity/aggregate-root.interface";
 import BaseEntity from "../../@shared/domain/entity/base-entity";
+import NotificationError from "../../@shared/domain/notification/notification.error";
 import Id from "../../@shared/domain/value-object/id.value-object";
-
+import ReviewValidatorFactory from "../factory/review.validator.factory";
 interface Props {
   id?: Id;
   clientId: number;
@@ -24,6 +25,11 @@ export default class Review extends BaseEntity implements AggregateRoot {
     this._stars = props.stars;
     this._comment = props.comment;
     this._restaurantId = props.restaurantId;
+
+    this.validate();
+    if (this.notification.hasErrors()) {
+      throw new NotificationError(this.notification.getErrors());
+    }
   }
 
   public get clientId(): number {
@@ -42,13 +48,23 @@ export default class Review extends BaseEntity implements AggregateRoot {
     return this._restaurantId;
   }
 
+  changeStars(value: number) {
+    this._stars = value;
+  }
+
+  changeComment(value: string) {
+    this._comment = value;
+  }
+
+  validate() {
+    ReviewValidatorFactory.create().validate(this);
+  }
+
   public set clientId(value: number) {
     this._clientId = value;
   }
 
   public set stars(value: number) {
-    //  this._numberOfReviews = this._numberOfReviews + 1;
-    // this._stars = (this._stars + value) / this.numberOfReviews;
     this._stars = value;
   }
 

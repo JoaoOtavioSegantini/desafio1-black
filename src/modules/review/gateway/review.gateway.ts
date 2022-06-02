@@ -4,5 +4,5 @@ export default interface ReviewGateway {
   create(review: Review): Promise<Review>;
   find(id: string): Promise<Review>;
   findAll(): Promise<Review[]>;
-  update(id: string): Promise<void>;
+  update(review: Review): Promise<void>;
 }

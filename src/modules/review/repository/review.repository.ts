@@ -7,7 +7,7 @@ import { ReviewModel } from "./review.model";
 export default class ReviewRepository implements ReviewGateway {
   async create(review: reviewEntity): Promise<reviewEntity> {
     const model = await ReviewModel.create({
-      id: new Id(review.id.id),
+      id: review.id.id,
       clientId: review.clientId,
       comment: review.comment,
       stars: review.stars,
@@ -17,6 +17,7 @@ export default class ReviewRepository implements ReviewGateway {
     });
 
     return new Review({
+      id: new Id(model.id),
       clientId: model.clientId,
       stars: model.stars,
       comment: model.comment,
@@ -31,6 +32,7 @@ export default class ReviewRepository implements ReviewGateway {
     }
 
     return new Review({
+      id: new Id(review.id),
       clientId: review.clientId,
       comment: review.comment,
       restaurantId: review.restaurantId,
@@ -43,6 +45,7 @@ export default class ReviewRepository implements ReviewGateway {
     let allReviews: Review[] = [];
     reviews.map((review) => {
       const newRev = new Review({
+        id: new Id(review.id),
         clientId: review.clientId,
         comment: review.comment,
         restaurantId: review.restaurantId,
@@ -53,20 +56,21 @@ export default class ReviewRepository implements ReviewGateway {
 
     return allReviews;
   }
-  async update(id: string): Promise<void> {
-    const review = await ReviewModel.findOne({ where: { id } });
+  async update(entity: Review): Promise<void> {
+    const review = await ReviewModel.findOne({ where: { id: entity.id.id } });
 
     if (!review) {
       throw new Error("Review not found");
     }
+    
     await ReviewModel.update(
       {
-        clientId: review.clientId,
-        comment: review.comment,
-        restaurantId: review.restaurantId,
-        stars: review.stars,
+        clientId: entity.clientId,
+        comment: entity.comment,
+        restaurantId: entity.restaurantId,
+        stars: entity.stars,
       },
-      { where: { id } }
+      { where: { id: entity.id.id } }
     );
   }
 }

@@ -1,4 +1,10 @@
-import { Column, ForeignKey, Model, PrimaryKey, Table } from "sequelize-typescript";
+import {
+  Column,
+  ForeignKey,
+  Model,
+  PrimaryKey,
+  Table,
+} from "sequelize-typescript";
 import { CustomerModel } from "../../customer/repository/customer.model";
 import { RestaurantModel } from "../../restaurant/repository/restaurant.model";
 
@@ -15,7 +21,7 @@ export class ReviewModel extends Model {
   @Column({ allowNull: false })
   clientId: number;
 
-  @Column({ allowNull: false })
+  @Column({ allowNull: false, validate: { isInt: true, min: 0, max: 5 } })
   stars: number;
 
   @Column({ allowNull: false })

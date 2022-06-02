@@ -49,10 +49,7 @@ export default class Customer extends BaseEntity implements AggregateRoot {
   }
 
   changeName(value: string) {
-    console.log("antes", value, this._name, this.name);
-
     this._name = value;
-    console.log("depois", value, this._name, this.name);
   }
 
   changePhone(value: string) {
