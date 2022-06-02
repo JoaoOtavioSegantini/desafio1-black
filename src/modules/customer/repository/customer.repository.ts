@@ -39,7 +39,11 @@ export default class CustomerRepository implements CustomerGateway {
 
     let customers: Customer[] = [];
     models.map((model) => {
-      const customer = new Customer({ name: model.name, phone: model.phone });
+      const customer = new Customer({
+        id: new Id(model.id),
+        name: model.name,
+        phone: model.phone,
+      });
       customers.push(customer);
     });
 
@@ -81,7 +85,7 @@ export default class CustomerRepository implements CustomerGateway {
     });
 
     const response = {
-      customerId: id,
+      customerId: Number(id),
       averageStarsGiven: starsGiven / reviews.length,
       reviews,
     };
