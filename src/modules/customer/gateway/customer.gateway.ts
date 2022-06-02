@@ -1,4 +1,5 @@
 import Customer from "../domain/customer.entity";
+import { GetReviewsCustomerOutputDto } from "../usecase/retrieve/getReviews/get-reviews-customer.dto";
 
 export default interface CustomerGateway {
   create(customer: Customer): Promise<Customer>;
@@ -6,5 +7,5 @@ export default interface CustomerGateway {
   findAll(): Promise<Customer[]>;
   update(entity: Customer): Promise<void>;
   delete(id: string): Promise<void>;
-  getReviews(id: string): any;
+  getReviews(id: string): Promise<GetReviewsCustomerOutputDto>;
 }
