@@ -85,15 +85,11 @@ describe("Review repository test", () => {
       where: { id: "123" },
     });
 
-    expect(updatedReview.toJSON()).toStrictEqual({
-      id: "123",
-      comment: "Comment updated",
-      stars: 2,
-      createdAt: review.createdAt,
-      updatedAt: review.updatedAt,
-      clientId: 1,
-      restaurantId: 1,
-    });
+    expect(updatedReview.comment).toEqual("Comment updated");
+    expect(updatedReview.id).toEqual("123");
+    expect(updatedReview.stars).toEqual(2);
+    expect(updatedReview.clientId).toEqual(1);
+    expect(updatedReview.restaurantId).toEqual(1);
   });
   it("should find all reviews", async () => {
     const reviewRepository = new ReviewRepository();
@@ -102,14 +98,14 @@ describe("Review repository test", () => {
       clientId: 1,
       restaurantId: 1,
       stars: 4,
-      comment: "Incrivel"
+      comment: "Incrivel",
     });
     const review2 = new Review({
       id: new Id("2"),
       clientId: 1,
       restaurantId: 1,
       stars: 4,
-      comment: "Incrivel"
+      comment: "Incrivel",
     });
     await reviewRepository.create(review);
     await reviewRepository.create(review2);
