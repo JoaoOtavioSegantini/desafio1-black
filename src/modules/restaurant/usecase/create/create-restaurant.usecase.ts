@@ -7,11 +7,8 @@ import {
 } from "./create-restaurant.dto";
 
 export default class CreateRestaurantUseCase {
-  private _restaurantRepository: RestaurantGateway;
+  constructor(private readonly restaurantRepository: RestaurantGateway) {}
 
-  constructor(_restaurantRepository: RestaurantGateway) {
-    this._restaurantRepository = _restaurantRepository;
-  }
   async execute(
     input: CreateRestaurantInputDto
   ): Promise<CreateRestaurantOutputDto> {
@@ -23,7 +20,7 @@ export default class CreateRestaurantUseCase {
       description: input.description,
     };
     const restaurant = new Restaurant(props);
-    this._restaurantRepository.create(restaurant);
+    this.restaurantRepository.create(restaurant);
 
     return {
       id: restaurant.id.id,
