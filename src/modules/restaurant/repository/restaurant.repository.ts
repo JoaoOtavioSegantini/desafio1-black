@@ -7,6 +7,34 @@ import RestaurantGateway from "../gateway/restaurant.gateway";
 import { RestaurantModel } from "./restaurant.model";
 
 export default class RestaurantRepository implements RestaurantGateway {
+  async getTopFive() {
+    const restaurants = await RestaurantModel.findAll({
+      attributes: ["id", "name"],
+      include: {
+        association: "reviews",
+        attributes: ["stars"],
+      },
+    });
+
+    const topFive = restaurants
+      .map((restaurant) => {
+        const averageReviews = restaurant.reviews
+          ? restaurant.reviews.reduce(
+              (accum, review) => review.stars + accum,
+              0
+            ) / restaurant.reviews.length
+          : 0;
+
+        return {
+          ...restaurant.get(),
+          averageReviews,
+        };
+      })
+      .sort((a, b) => b.averageReviews - a.averageReviews)
+      .slice(0, 5);
+
+    return topFive;
+  }
   async create(restaurant: restaurantEntity): Promise<restaurantEntity> {
     const model = await RestaurantModel.create({
       id: restaurant.id.id,
@@ -86,7 +114,7 @@ export default class RestaurantRepository implements RestaurantGateway {
     }
 
     let reviews: Review[] = [];
-    let starsReceived: number;
+    let starsReceived: number = 0;
     model.reviews.map((rev) => {
       const review = new Review({
         id: new Id(rev.id),
@@ -95,6 +123,7 @@ export default class RestaurantRepository implements RestaurantGateway {
         restaurantId: rev.restaurantId,
         stars: rev.stars,
       });
+
       reviews.push(review);
       starsReceived += review.stars;
     });
@@ -102,7 +131,13 @@ export default class RestaurantRepository implements RestaurantGateway {
     const response = {
       restaurantId: id,
       averageStarsReceived: starsReceived / reviews.length,
-      reviews,
+      reviews: reviews.map((rev) => {
+        return {
+          customerId: rev.clientId,
+          stars: rev.stars,
+          comment: rev.comment,
+        };
+      }),
     };
 
     return response;
