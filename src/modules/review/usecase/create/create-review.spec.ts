@@ -1,4 +1,3 @@
-import Id from "../../../@shared/domain/value-object/id.value-object";
 import CreateReviewUseCase from "./create-review.usecase";
 
 const MockRepository = () => {
@@ -18,16 +17,16 @@ describe("Create review usecase unit test", () => {
     const usecase = new CreateReviewUseCase(reviewRepository);
 
     const input = {
-      clientId: 2,
-      restaurantId: 1,
+      clientId: "2",
+      restaurantId: "1",
       stars: 1,
-      comment: "Ótimo",
+      comment: "Péssimo...",
     };
 
     const result = await usecase.execute(input);
 
     expect(reviewRepository.create).toHaveBeenCalled();
-    expect(result.id).toBeDefined;
+    expect(result.id).toBeDefined();
     expect(result.clientId).toBe(input.clientId);
     expect(result.restaurantId).toBe(input.restaurantId);
     expect(result.stars).toBe(input.stars);

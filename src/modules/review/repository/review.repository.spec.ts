@@ -26,8 +26,8 @@ describe("Review repository test", () => {
   it("should create a new review", async () => {
     const props = {
       id: new Id("1"),
-      clientId: 1,
-      restaurantId: 1,
+      clientId: "1",
+      restaurantId: "1",
       stars: 4,
       comment: "Incrivel",
     };
@@ -49,8 +49,8 @@ describe("Review repository test", () => {
   it("should find a review", async () => {
     ReviewModel.create({
       id: "1",
-      clientId: 1,
-      restaurantId: 1,
+      clientId: "1",
+      restaurantId: "1",
       stars: 4,
       comment: "Incrivel",
       updatedAt: new Date(),
@@ -61,8 +61,8 @@ describe("Review repository test", () => {
     const review = await reviewRepository.find("1");
 
     expect(review.id.id).toEqual("1");
-    expect(review.clientId).toEqual(1);
-    expect(review.restaurantId).toEqual(1);
+    expect(review.clientId).toEqual("1");
+    expect(review.restaurantId).toEqual("1");
     expect(review.stars).toEqual(4);
     expect(review.comment).toEqual("Incrivel");
   });
@@ -70,8 +70,8 @@ describe("Review repository test", () => {
     const reviewRepository = new ReviewRepository();
     const review = new Review({
       id: new Id("123"),
-      clientId: 1,
-      restaurantId: 1,
+      clientId: "1",
+      restaurantId: "1",
       stars: 4,
       comment: "Incrivel",
     });
@@ -88,22 +88,22 @@ describe("Review repository test", () => {
     expect(updatedReview.comment).toEqual("Comment updated");
     expect(updatedReview.id).toEqual("123");
     expect(updatedReview.stars).toEqual(2);
-    expect(updatedReview.clientId).toEqual(1);
-    expect(updatedReview.restaurantId).toEqual(1);
+    expect(updatedReview.clientId).toEqual("1");
+    expect(updatedReview.restaurantId).toEqual("1");
   });
   it("should find all reviews", async () => {
     const reviewRepository = new ReviewRepository();
     const review = new Review({
       id: new Id("1"),
-      clientId: 1,
-      restaurantId: 1,
+      clientId: "1",
+      restaurantId: "1",
       stars: 4,
       comment: "Incrivel",
     });
     const review2 = new Review({
       id: new Id("2"),
-      clientId: 1,
-      restaurantId: 1,
+      clientId: "1",
+      restaurantId: "1",
       stars: 4,
       comment: "Incrivel",
     });

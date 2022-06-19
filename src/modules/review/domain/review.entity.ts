@@ -5,19 +5,19 @@ import Id from "../../@shared/domain/value-object/id.value-object";
 import ReviewValidatorFactory from "../factory/review.validator.factory";
 interface Props {
   id?: Id;
-  clientId: number;
+  clientId: string;
   stars: number;
   comment: string;
-  restaurantId: number;
+  restaurantId: string;
   createdAt?: Date;
   updatedAt?: Date;
 }
 
 export default class Review extends BaseEntity implements AggregateRoot {
-  private _clientId: number;
+  private _clientId: string;
   private _stars: number;
   private _comment: string;
-  private _restaurantId: number;
+  private _restaurantId: string;
 
   constructor(props: Props) {
     super(props.id);
@@ -32,7 +32,7 @@ export default class Review extends BaseEntity implements AggregateRoot {
     }
   }
 
-  public get clientId(): number {
+  public get clientId(): string {
     return this._clientId;
   }
 
@@ -44,7 +44,7 @@ export default class Review extends BaseEntity implements AggregateRoot {
     return this._comment;
   }
 
-  public get restaurantId(): number {
+  public get restaurantId(): string {
     return this._restaurantId;
   }
 
@@ -56,11 +56,19 @@ export default class Review extends BaseEntity implements AggregateRoot {
     this._comment = value;
   }
 
+  changeRestaurantId(value: string){
+    this._restaurantId = value;
+  }
+
+  changeClientId(value: string) {
+    this._clientId = value;
+  }
+
   validate() {
     ReviewValidatorFactory.create().validate(this);
   }
 
-  public set clientId(value: number) {
+  public set clientId(value: string) {
     this._clientId = value;
   }
 
@@ -72,7 +80,7 @@ export default class Review extends BaseEntity implements AggregateRoot {
     this._comment = value;
   }
 
-  public set restaurantId(value: number) {
+  public set restaurantId(value: string) {
     this._restaurantId = value;
   }
 }

@@ -1,15 +1,15 @@
 export interface CreateReviewInputDto {
   id?: string;
-  clientId: number;
-  restaurantId: number;
+  clientId: string;
+  restaurantId: string;
   stars: number;
   comment: string;
 }
 
 export interface CreateReviewOutputDto {
   id: string;
-  clientId: number;
-  restaurantId: number;
+  clientId: string;
+  restaurantId: string;
   stars: number;
   comment: string;
 }

@@ -19,7 +19,7 @@ export class ReviewModel extends Model {
 
   @ForeignKey(() => CustomerModel)
   @Column({ allowNull: false })
-  clientId: number;
+  clientId: string;
 
   @Column({ allowNull: false, validate: { isInt: true, min: 0, max: 5 } })
   stars: number;
@@ -29,7 +29,7 @@ export class ReviewModel extends Model {
 
   @ForeignKey(() => RestaurantModel)
   @Column({ allowNull: false })
-  restaurantId: number;
+  restaurantId: string;
 
   @Column({ allowNull: false })
   createdAt: Date;

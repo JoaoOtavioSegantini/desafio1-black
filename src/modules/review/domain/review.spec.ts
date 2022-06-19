@@ -6,10 +6,10 @@ describe("Review unit tests", () => {
     expect(() => {
       let review = new Review({
         id: "" as unknown as Id,
-        clientId: 1,
+        clientId: "1",
         comment: "Simplesmente incrivel...",
         stars: 5,
-        restaurantId: 1,
+        restaurantId: "1",
         updatedAt: new Date(),
         createdAt: new Date(),
       });
@@ -20,10 +20,10 @@ describe("Review unit tests", () => {
     expect(() => {
       let review = new Review({
         id: new Id("123"),
-        clientId: 1,
+        clientId: "1",
         comment: "Simplesmente incrivel...",
         stars: undefined,
-        restaurantId: 1,
+        restaurantId: "1",
         updatedAt: new Date(),
         createdAt: new Date(),
       });
@@ -34,10 +34,10 @@ describe("Review unit tests", () => {
     expect(() => {
       let review = new Review({
         id: "" as unknown as Id,
-        clientId: 1,
+        clientId: "1",
         comment: "Simplesmente incrivel...",
         stars: undefined,
-        restaurantId: 1,
+        restaurantId: "1",
         updatedAt: new Date(),
         createdAt: new Date(),
       });
@@ -48,10 +48,10 @@ describe("Review unit tests", () => {
     // Arrange
     const review = new Review({
       id: new Id("123"),
-      clientId: 1,
+      clientId: "1",
       comment: "Simplesmente incrivel...",
       stars: 4,
-      restaurantId: 1,
+      restaurantId: "1",
       updatedAt: new Date(),
       createdAt: new Date(),
     });

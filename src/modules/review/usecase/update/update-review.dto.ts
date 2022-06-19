@@ -1,7 +1,7 @@
 export interface UpdateReviewInputDto {
   id: string;
-  clientId: number;
-  restaurantId: number;
+  clientId: string;
+  restaurantId?: string;
   stars: number;
   comment: string;
 }

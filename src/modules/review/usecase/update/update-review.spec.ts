@@ -4,18 +4,18 @@ import UpdateReviewUseCase from "./update-review.usecase";
 
 const review = new Review({
   id: new Id("1"),
-  clientId: 2,
-  restaurantId: 1,
+  clientId: "2",
+  restaurantId: "1",
   stars: 1,
   comment: "Ótimo",
 });
 
 const input = {
   id: "1",
-  clientId: 2,
-  restaurantId: 1,
-  stars: 1,
-  comment: "Ótimo",
+  clientId: "2",
+  restaurantId: "1",
+  stars: 4,
+  comment: "Ótimo!! :)",
 };
 
 const MockRepository = () => {
