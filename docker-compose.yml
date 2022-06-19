@@ -1,0 +1,25 @@
+version: "3.7"
+
+
+volumes:
+  postgres_data:
+      driver: local
+
+services:
+ postgres:
+    image: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: restaurant-sequelize-challenge
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: 123456
+    security_opt:
+      - seccomp:unconfined
+    ports:
+      - 5432:5432
+    networks:
+      - sequelize-challenge-black
+
+networks:
+  sequelize-challenge-black:

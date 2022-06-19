@@ -17,7 +17,9 @@
     "typescript": "^4.5.5"
   },
   "scripts": {
-    "test": "npm run tsc -- --noEmit && jest",
+    "test": "npm run tsc -- --noEmit && jest --testPathIgnorePatterns=./__tests__/",
+    "e2e": "npm run tsc -- --noEmit && jest src/modules/api/__tests__/customer.e2e.spec.ts && jest src/modules/api/__tests__/restaurant.e2e.spec.ts",
+    "dev": "nodemon src/modules/api/server.ts",
     "tsc": "tsc"
   },
   "dependencies": {
@@ -28,6 +30,7 @@
     "jstoxml": "^3.2.3",
     "nodemon": "^2.0.16",
     "pg": "^8.7.3",
+    "pg-hstore": "^2.3.4",
     "reflect-metadata": "^0.1.13",
     "sequelize": "^6.17.0",
     "sequelize-typescript": "^2.1.3",
