@@ -13,8 +13,11 @@ export default class ReviewYupValidator
           id: yup.string().required("Id is required"),
           stars: yup.number().required("Stars is required").min(0, "Stars must be between 0 and 5").max(5,"Stars must be between 0 and 5"),
           comment: yup.string().required("Comment is required"),
-          clientId: yup.number().required("ClientId is required").integer("ClientId must be a integer"),
-          restaurantId: yup.number().required("RestaurantId is required").integer("RestaurantId must be a integer")
+          clientId: yup.string().required("ClientId is required")
+          //.uuid("ClientId must be a uuid"),
+          ,
+          restaurantId: yup.string().required("RestaurantId is required")
+          //.uuid("RestaurantId must be a uuid")
         })
         .validateSync(
           {
