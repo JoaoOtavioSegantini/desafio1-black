@@ -16,6 +16,8 @@ export default class UpdateReviewUseCase {
     const review = await this.ReviewRepository.find(input.id);
     review.changeComment(input.comment);
     review.changeStars(input.stars);
+    review.changeClientId(input.clientId);
+    review.changeRestaurantId(input.restaurantId);
     await this.ReviewRepository.update(review);
 
     return {};
