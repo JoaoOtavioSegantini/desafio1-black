@@ -28,6 +28,7 @@ const MockRepository = () => {
     createReview: jest.fn(),
     putReview: jest.fn(),
     update: jest.fn(),
+    getTopFive: jest.fn()
   };
 };
 

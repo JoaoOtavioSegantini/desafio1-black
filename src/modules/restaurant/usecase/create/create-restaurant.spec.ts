@@ -9,7 +9,8 @@ const MockRepository = () => {
     getReviews: jest.fn(),
     createReview: jest.fn(),
     putReview: jest.fn(),
-    update: jest.fn()
+    update: jest.fn(),
+    getTopFive: jest.fn()
   };
 };
 
@@ -28,7 +29,7 @@ describe("Create restaurant usecase unit test", () => {
     const result = await usecase.execute(input);
 
     expect(restaurantRepository.create).toHaveBeenCalled();
-    expect(result.id).toBeDefined;
+    expect(result.id).toBeDefined();
     expect(result.name).toBe(input.name);
     expect(result.phone).toBe(input.phone);
     expect(result.description).toBe(input.description);

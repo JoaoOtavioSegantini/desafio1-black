@@ -25,6 +25,7 @@ const MockRepository = () => {
     delete: jest.fn(),
     getReviews: jest.fn(),
     update: jest.fn(),
+    getTopFive: jest.fn()
   };
 };
 
