@@ -6,10 +6,7 @@ import {
 } from "./findAll-restaurant.dto";
 
 export default class FindAllRestaurantUseCase {
-  private restaurantRepository: RestaurantGateway;
-  constructor(restaurantRepository: RestaurantGateway) {
-    this.restaurantRepository = restaurantRepository;
-  }
+  constructor(private readonly restaurantRepository: RestaurantGateway) {}
 
   async execute(
     input: FindAllRestaurantInputDto

@@ -2,14 +2,14 @@ export interface GetReviewsRestaurantInputDto {
   id: string;
 }
 
-interface ReviewOutputDto {
-  customerId: number;
+export interface ReviewOutputDto {
+  customerId: string;
   stars: number;
   comment: string;
 }
 
 export interface GetReviewsRestaurantOutputDto {
-  restaurantId: number;
+  restaurantId: string;
   averageStarsReceived: number;
   reviews: ReviewOutputDto[];
 }

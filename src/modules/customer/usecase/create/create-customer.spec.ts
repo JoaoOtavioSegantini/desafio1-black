@@ -24,7 +24,7 @@ describe("Create customer usecase unit test", () => {
     const result = await usecase.execute(input);
 
     expect(customerRepository.create).toHaveBeenCalled();
-    expect(result.id).toBeDefined;
+    expect(result.id).toBeDefined();
     expect(result.name).toBe(input.name);
     expect(result.phone).toBe(input.phone);
   });

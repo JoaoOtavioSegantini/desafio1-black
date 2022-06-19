@@ -3,13 +3,13 @@ export interface GetReviewsCustomerInputDto {
 }
 
 interface ReviewOutputDto {
-  restaurantId: number;
+  restaurantId: string;
   stars: number;
   comment: string;
 }
 
 export interface GetReviewsCustomerOutputDto {
-  customerId: number;
+  customerId: string;
   averageStarsGiven: number;
   reviews: ReviewOutputDto[];
 }

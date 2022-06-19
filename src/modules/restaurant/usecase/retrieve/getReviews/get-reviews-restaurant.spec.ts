@@ -30,28 +30,28 @@ const restaurant = new Restaurant({
 
 const review = new Review({
   id: new Id("1"),
-  clientId: 1,
-  restaurantId: 1,
+  clientId: "1",
+  restaurantId: "1",
   stars: 4,
   comment: "cc",
 });
 const review2 = new Review({
   id: new Id("2"),
-  clientId: 2,
-  restaurantId: 1,
+  clientId: "2",
+  restaurantId: "1",
   stars: 1,
   comment: "Ótimo",
 });
 const review3 = new Review({
   id: new Id("3"),
-  clientId: 3,
-  restaurantId: 1,
+  clientId: "3",
+  restaurantId: "1",
   stars: 4,
   comment: "Ótimo",
 });
 
 const output = {
-  restaurantId: Number(restaurant.id.id),
+  restaurantId: restaurant.id.id,
   averageStarsReceived: (review.stars + review2.stars + review3.stars) / 3,
   reviews: [review, review2, review3],
 };
@@ -64,6 +64,7 @@ const MockRepository = () => {
     delete: jest.fn(),
     getReviews: jest.fn().mockReturnValue(output),
     update: jest.fn(),
+    getTopFive: jest.fn()
   };
 };
 
@@ -79,6 +80,6 @@ describe("Get Reviews customer usecase unit test", () => {
     expect(restaurantRepository.getReviews).toHaveBeenCalled();
     expect(result.reviews).toHaveLength(3);
     expect(result.averageStarsReceived).toBe(3);
-    expect(result.restaurantId).toBe(1);
+    expect(result.restaurantId).toBe("1");
   });
 });

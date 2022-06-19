@@ -15,6 +15,8 @@ describe("Customer repository test", () => {
       logging: false,
       sync: { force: true },
     });
+    
+    jest.useFakeTimers("modern").setSystemTime(new Date(2023, 9, 1, 7));
 
     await sequelize.addModels([CustomerModel, ReviewModel]);
     await sequelize.sync();
@@ -129,6 +131,5 @@ describe("Customer repository test", () => {
     });
 
     expect(customerDeleted).toBeNull();
-
   });
 });

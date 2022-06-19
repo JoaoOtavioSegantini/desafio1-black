@@ -4,7 +4,7 @@ import {
   FindRestaurantOutputDto,
 } from "./find-restaurant.dto";
 
-export default class FindCustomerUseCase {
+export default class FindRestaurantUseCase {
   constructor(private readonly restaurantRepository: RestaurantGateway) {}
 
   async execute(

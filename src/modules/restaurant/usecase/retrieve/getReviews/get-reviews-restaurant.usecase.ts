@@ -5,10 +5,7 @@ import {
 } from "./get-reviews-restaurant.dto";
 
 export default class GetReviewsRestaurantUseCase {
-  private restaurantRepository: RestaurantGateway;
-  constructor(restaurantRepository: RestaurantGateway) {
-    this.restaurantRepository = restaurantRepository;
-  }
+  constructor(private readonly restaurantRepository: RestaurantGateway) {}
 
   async execute(
     input: GetReviewsRestaurantInputDto

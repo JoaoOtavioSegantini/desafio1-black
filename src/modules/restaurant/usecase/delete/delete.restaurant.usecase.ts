@@ -4,11 +4,8 @@ import {
   OutputDeleteRestaurantDto,
 } from "./delete.restaurant.dto";
 
-export default class DeleteCustomerUseCase {
-  private RestaurantGateway: RestaurantGateway;
-  constructor(RestaurantGateway: RestaurantGateway) {
-    this.RestaurantGateway = RestaurantGateway;
-  }
+export default class DeleteRestaurantUseCase {
+  constructor(private readonly RestaurantGateway: RestaurantGateway) {}
 
   async execute(
     input: InputDeleteRestaurantDto

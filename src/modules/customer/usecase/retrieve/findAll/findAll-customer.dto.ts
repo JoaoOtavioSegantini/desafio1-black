@@ -1,6 +1,6 @@
 export interface FindAllCustomerInputDto {}
 
-interface CustomerOutputDto {
+export interface CustomerOutputDto {
   id: string;
   name: string;
   phone: string;

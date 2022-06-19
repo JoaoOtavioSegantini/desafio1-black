@@ -71,10 +71,11 @@ export default class CustomerRepository implements CustomerGateway {
     });
 
     let reviews: Review[] = [];
-    let starsGiven: number;
+    let starsGiven: number = 0;
 
     customer.reviews.map((rev) => {
       const review = new Review({
+        id: new Id(rev.id),
         clientId: rev.clientId,
         comment: rev.comment,
         restaurantId: rev.restaurantId,
@@ -85,9 +86,15 @@ export default class CustomerRepository implements CustomerGateway {
     });
 
     const response = {
-      customerId: Number(id),
+      customerId: id,
       averageStarsGiven: starsGiven / reviews.length,
-      reviews,
+      reviews: reviews.map(rev => {
+        return {
+          restaurantId: rev.restaurantId,
+          stars: rev.stars,
+          comment: rev.comment
+        }
+      }),
     };
 
     return response;

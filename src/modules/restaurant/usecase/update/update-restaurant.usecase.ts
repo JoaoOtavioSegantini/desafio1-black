@@ -7,11 +7,8 @@ import {
 } from "./update-restaurant.dto";
 
 export default class UpdateRestaurantUseCase {
-  private _restaurantRepository: RestaurantGateway;
-
-  constructor(_restaurantRepository: RestaurantGateway) {
-    this._restaurantRepository = _restaurantRepository;
-  }
+  constructor(private readonly _restaurantRepository: RestaurantGateway) {}
+  
   async execute(
     input: UpdateRestaurantInputDto
   ): Promise<UpdateRestaurantOutputDto> {

@@ -11,28 +11,28 @@ const customer = new Customer({
 
 const review = new Review({
   id: new Id("1"),
-  clientId: 1,
-  restaurantId: 1,
+  clientId: "1",
+  restaurantId: "1",
   stars: 4,
   comment: "cc",
 });
 const review2 = new Review({
   id: new Id("2"),
-  clientId: 1,
-  restaurantId: 2,
+  clientId: "1",
+  restaurantId: "2",
   stars: 1,
   comment: "Ótimo",
 });
 const review3 = new Review({
   id: new Id("3"),
-  clientId: 1,
-  restaurantId: 3,
+  clientId: "1",
+  restaurantId: "3",
   stars: 4,
   comment: "Ótimo",
 });
 
 const output = {
-  customerId: Number(customer.id.id),
+  customerId: customer.id.id,
   averageStarsGiven: (review.stars + review2.stars + review3.stars) / 3,
   reviews: [review, review2, review3],
 };
@@ -60,7 +60,7 @@ describe("Get Reviews customer usecase unit test", () => {
     expect(customerRepository.getReviews).toHaveBeenCalled();
     expect(result.reviews).toHaveLength(3);
     expect(result.averageStarsGiven).toBe(3);
-    expect(result.customerId).toBe(1);
+    expect(result.customerId).toBe("1");
 
   });
 });
