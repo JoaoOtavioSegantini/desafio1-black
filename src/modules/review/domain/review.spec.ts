@@ -4,7 +4,7 @@ import Review from "./review.entity";
 describe("Review unit tests", () => {
   it("should throw error when id is empty", () => {
     expect(() => {
-      let review = new Review({
+      let _review = new Review({
         id: "" as unknown as Id,
         clientId: "1",
         comment: "Simplesmente incrivel...",
@@ -18,7 +18,7 @@ describe("Review unit tests", () => {
 
   it("should throw error when stars is empty", () => {
     expect(() => {
-      let review = new Review({
+      let _review = new Review({
         id: new Id("123"),
         clientId: "1",
         comment: "Simplesmente incrivel...",
@@ -32,7 +32,7 @@ describe("Review unit tests", () => {
 
   it("should throw error when stars is and id are empty", () => {
     expect(() => {
-      let review = new Review({
+      let _review = new Review({
         id: "" as unknown as Id,
         clientId: "1",
         comment: "Simplesmente incrivel...",

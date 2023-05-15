@@ -4,7 +4,7 @@ import Customer from "./customer.entity";
 describe("Customer unit tests", () => {
   it("should throw error when id is empty", () => {
     expect(() => {
-      let customer = new Customer({
+      let _customer = new Customer({
         id: "" as unknown as Id,
         name: "John",
         phone: "123",
@@ -16,7 +16,7 @@ describe("Customer unit tests", () => {
 
   it("should throw error when name is empty", () => {
     expect(() => {
-      let customer = new Customer({
+      let _customer = new Customer({
         id: new Id("123"),
         name: "",
         phone: "123",
@@ -26,7 +26,7 @@ describe("Customer unit tests", () => {
 
   it("should throw error when name is and id are empty", () => {
     expect(() => {
-      let customer = new Customer({
+      let _customer = new Customer({
         id: "" as unknown as Id,
         name: "",
         phone: "123",

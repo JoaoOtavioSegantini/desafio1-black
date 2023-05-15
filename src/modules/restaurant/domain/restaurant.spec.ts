@@ -4,7 +4,7 @@ import Restaurant from "./restaurant.entity";
 describe("restaurant unit tests", () => {
   it("should throw error when id is empty", () => {
     expect(() => {
-      let restaurant = new Restaurant({
+      let _restaurant = new Restaurant({
         id: "" as unknown as Id,
         name: "John",
         phone: "123",
@@ -18,7 +18,7 @@ describe("restaurant unit tests", () => {
 
   it("should throw error when name is empty", () => {
     expect(() => {
-      let restaurant = new Restaurant({
+      let _restaurant = new Restaurant({
         id: new Id("123"),
         name: "",
         phone: "123",
@@ -30,7 +30,7 @@ describe("restaurant unit tests", () => {
 
   it("should throw error when name is and id are empty", () => {
     expect(() => {
-      let restaurant = new Restaurant({
+      let _restaurant = new Restaurant({
         id: "" as unknown as Id,
         name: "",
         phone: "123",
