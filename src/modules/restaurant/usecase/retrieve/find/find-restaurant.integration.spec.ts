@@ -19,7 +19,7 @@ describe("Test: find restaurant integration test", () => {
 
     jest.useFakeTimers("modern").setSystemTime(new Date(2023, 9, 1, 7));
 
-    await sequelize.addModels([RestaurantModel, ReviewModel]);
+    sequelize.addModels([RestaurantModel, ReviewModel]);
     await sequelize.sync();
   });
 

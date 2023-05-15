@@ -15,7 +15,7 @@ describe("Review repository test", () => {
       sync: { force: true },
     });
 
-    await sequelize.addModels([ReviewModel]);
+    sequelize.addModels([ReviewModel]);
     await sequelize.sync();
   });
 

@@ -93,7 +93,7 @@ describe("E2E test for restaurant", () => {
       address: "District Zero",
     });
 
-    const id = response.body.id;
+    const {id} = response.body;
 
     response = await request(app).put(`/restaurants/${id}`).send({
       name: "The Indigo Tea Shop",
@@ -118,7 +118,7 @@ describe("E2E test for restaurant", () => {
       address: "Street Zero",
     });
 
-    const id = response.body.id;
+    const {id} = response.body;
 
     response = await request(app).delete(`/restaurants/${id}`);
 
@@ -132,7 +132,7 @@ describe("E2E test for restaurant", () => {
       phone: "+5522987654321",
     });
 
-    const id = response.body.id;
+    const {id} = response.body;
 
     response = await request(app).post(`/restaurants`).send({
       name: "x",
@@ -171,7 +171,7 @@ describe("E2E test for restaurant", () => {
       phone: "+5522987654321",
     });
 
-    const id = response.body.id;
+    const {id} = response.body;
 
     response = await request(app).post("/customers").send({
       name: "Mayra Bellzhnheier",

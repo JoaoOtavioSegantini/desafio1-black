@@ -18,14 +18,12 @@ export default class FindAllRestaurantUseCase {
 
 class OutputMapper {
   static toOutput(restaurants: Restaurant[]): FindAllRestaurantOutputDto {
-    const output = restaurants.map((restaurant) => ({
+    return restaurants.map((restaurant) => ({
       id: restaurant.id.id,
       name: restaurant.name,
       description: restaurant.description,
       phone: restaurant.phone,
       address: restaurant.address,
     }));
-
-    return output;
   }
 }

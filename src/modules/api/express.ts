@@ -23,7 +23,9 @@ async function setupDb() {
     database: process.env.DATABASE || "restaurant-sequelize-challenge",
     logging: false,
   });
-  await sequelize.addModels([CustomerModel, RestaurantModel, ReviewModel]);
-  if (process.env.NODE_ENV != "test") await sequelize.sync();
+  sequelize.addModels([CustomerModel, RestaurantModel, ReviewModel]);
+  if (process.env.NODE_ENV != "test") {
+    await sequelize.sync();
+  }
 }
 setupDb();

@@ -85,18 +85,16 @@ export default class CustomerRepository implements CustomerGateway {
       starsGiven += review.stars;
     });
 
-    const response = {
+    return {
       customerId: id,
       averageStarsGiven: starsGiven / reviews.length,
-      reviews: reviews.map(rev => {
+      reviews: reviews.map((rev) => {
         return {
           restaurantId: rev.restaurantId,
           stars: rev.stars,
-          comment: rev.comment
-        }
+          comment: rev.comment,
+        };
       }),
     };
-
-    return response;
   }
 }

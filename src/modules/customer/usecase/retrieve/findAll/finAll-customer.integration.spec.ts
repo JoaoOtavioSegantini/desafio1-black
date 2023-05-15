@@ -20,7 +20,7 @@ describe("List customer integration test", () => {
 
     jest.useFakeTimers("modern").setSystemTime(new Date(2023, 9, 1, 7));
 
-    await sequelize.addModels([CustomerModel, ReviewModel]);
+    sequelize.addModels([CustomerModel, ReviewModel]);
     await sequelize.sync();
   });
 

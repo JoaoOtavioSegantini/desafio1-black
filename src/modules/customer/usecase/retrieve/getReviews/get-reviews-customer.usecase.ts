@@ -9,7 +9,6 @@ export default class GetReviewsCustomerUseCase {
   }
 
   async execute(input: GetReviewsCustomerInputDto): Promise<GetReviewsCustomerOutputDto> {
-    const reviews = await this.customerRepository.getReviews(input.id);
-    return reviews;
+    return await this.customerRepository.getReviews(input.id);
   }
 }

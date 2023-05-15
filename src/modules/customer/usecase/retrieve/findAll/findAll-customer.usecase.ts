@@ -11,7 +11,9 @@ export default class FindAllCustomerUseCase {
     this.customerRepository = CustomerRepository;
   }
 
-  async execute(input: FindAllCustomerInputDto): Promise<FindAllCustomerOutputDto> {
+  async execute(
+    input: FindAllCustomerInputDto
+  ): Promise<FindAllCustomerOutputDto> {
     const customers = await this.customerRepository.findAll();
     return OutputMapper.toOutput(customers);
   }
@@ -19,12 +21,10 @@ export default class FindAllCustomerUseCase {
 
 class OutputMapper {
   static toOutput(customers: Customer[]): FindAllCustomerOutputDto {
-    const output = customers.map((customer) => ({
+    return customers.map((customer) => ({
       id: customer.id.id,
       name: customer.name,
       phone: customer.phone,
     }));
-
-    return output;
   }
 }

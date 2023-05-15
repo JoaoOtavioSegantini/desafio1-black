@@ -15,7 +15,7 @@ export default class RestaurantRepository implements RestaurantGateway {
       },
     });
 
-    const topFive = restaurants
+    return restaurants
       .map((restaurant) => {
         const averageReviews = restaurant.reviews
           ? restaurant.reviews.reduce(
@@ -31,8 +31,6 @@ export default class RestaurantRepository implements RestaurantGateway {
       })
       .sort((a, b) => b.averageReviews - a.averageReviews)
       .slice(0, 5);
-
-    return topFive;
   }
   async create(restaurant: Restaurant): Promise<Restaurant> {
     const model = await RestaurantModel.create({
@@ -127,7 +125,7 @@ export default class RestaurantRepository implements RestaurantGateway {
       starsReceived += review.stars;
     });
 
-    const response = {
+    return {
       restaurantId: id,
       averageStarsReceived: starsReceived / reviews.length,
       reviews: reviews.map((rev) => {
@@ -138,7 +136,5 @@ export default class RestaurantRepository implements RestaurantGateway {
         };
       }),
     };
-
-    return response;
   }
 }

@@ -1,5 +1,3 @@
-import Id from "../../../@shared/domain/value-object/id.value-object";
-import Restaurant from "../../domain/restaurant.entity";
 import RestaurantGateway from "../../gateway/restaurant.gateway";
 import {
   UpdateRestaurantInputDto,

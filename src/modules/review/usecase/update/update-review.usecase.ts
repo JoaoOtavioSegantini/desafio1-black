@@ -1,5 +1,3 @@
-import Id from "../../../@shared/domain/value-object/id.value-object";
-import Review from "../../domain/review.entity";
 import ReviewGateway from "../../gateway/review.gateway";
 import {
   UpdateReviewInputDto,

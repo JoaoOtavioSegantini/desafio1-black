@@ -79,7 +79,7 @@ describe("E2E test for customer", () => {
       phone: "+5522987654321",
     });
 
-    const id = response.body.id;
+    const {id} = response.body;
 
     response = await request(app).put(`/customers/${id}`).send({
       name: "Alex Brown",
@@ -98,7 +98,7 @@ describe("E2E test for customer", () => {
       phone: "+5522987654321",
     });
 
-    const id = response.body.id;
+    const {id} = response.body;
 
     response = await request(app).delete(`/customers/${id}`);
 
@@ -112,7 +112,7 @@ describe("E2E test for customer", () => {
       phone: "+5522987654321",
     });
 
-    const id = response.body.id;
+    const {id} = response.body;
 
     response = await request(app).post(`/restaurants`).send({
       name: "x",

@@ -25,7 +25,7 @@ describe("Test get reviews restaurant use case", () => {
 
     jest.useFakeTimers("modern").setSystemTime(new Date(2023, 9, 1, 7));
 
-    await sequelize.addModels([RestaurantModel, ReviewModel, CustomerModel]);
+    sequelize.addModels([RestaurantModel, ReviewModel, CustomerModel]);
     await sequelize.sync();
   });
 

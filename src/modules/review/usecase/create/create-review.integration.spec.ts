@@ -16,7 +16,7 @@ describe("Create review integration test", () => {
 
     jest.useFakeTimers("modern").setSystemTime(new Date(2023, 9, 1, 7));
 
-    await sequelize.addModels([ReviewModel]);
+    sequelize.addModels([ReviewModel]);
     await sequelize.sync();
   });
 

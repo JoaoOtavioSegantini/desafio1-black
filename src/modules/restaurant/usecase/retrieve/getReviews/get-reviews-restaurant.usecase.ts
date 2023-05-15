@@ -10,7 +10,6 @@ export default class GetReviewsRestaurantUseCase {
   async execute(
     input: GetReviewsRestaurantInputDto
   ): Promise<GetReviewsRestaurantOutputDto> {
-    const reviews = await this.restaurantRepository.getReviews(input.id);
-    return reviews;
+    return await this.restaurantRepository.getReviews(input.id);
   }
 }
