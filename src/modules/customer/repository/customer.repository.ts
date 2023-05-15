@@ -38,7 +38,7 @@ export default class CustomerRepository implements CustomerGateway {
     const models = await CustomerModel.findAll();
 
     let customers: Customer[] = [];
-    models.map((model) => {
+    models.forEach((model) => {
       const customer = new Customer({
         id: new Id(model.id),
         name: model.name,
@@ -73,7 +73,7 @@ export default class CustomerRepository implements CustomerGateway {
     let reviews: Review[] = [];
     let starsGiven: number = 0;
 
-    customer.reviews.map((rev) => {
+    customer.reviews.forEach((rev) => {
       const review = new Review({
         id: new Id(rev.id),
         clientId: rev.clientId,

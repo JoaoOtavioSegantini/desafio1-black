@@ -2,7 +2,6 @@ import Id from "../../@shared/domain/value-object/id.value-object";
 import Review from "../../review/domain/review.entity";
 import { ReviewModel } from "../../review/repository/review.model";
 import Restaurant from "../domain/restaurant.entity";
-import restaurantEntity from "../domain/restaurant.entity";
 import RestaurantGateway from "../gateway/restaurant.gateway";
 import { RestaurantModel } from "./restaurant.model";
 
@@ -35,7 +34,7 @@ export default class RestaurantRepository implements RestaurantGateway {
 
     return topFive;
   }
-  async create(restaurant: restaurantEntity): Promise<restaurantEntity> {
+  async create(restaurant: Restaurant): Promise<Restaurant> {
     const model = await RestaurantModel.create({
       id: restaurant.id.id,
       name: restaurant.name,
@@ -54,7 +53,7 @@ export default class RestaurantRepository implements RestaurantGateway {
       address: model.address,
     });
   }
-  async find(id: string): Promise<restaurantEntity> {
+  async find(id: string): Promise<Restaurant> {
     const model = await RestaurantModel.findOne({ where: { id } });
     if (!model) {
       throw new Error("Restaurant not found");
@@ -68,12 +67,12 @@ export default class RestaurantRepository implements RestaurantGateway {
       description: model.description,
     });
   }
-  async findAll(): Promise<restaurantEntity[]> {
+  async findAll(): Promise<Restaurant[]> {
     const models = await RestaurantModel.findAll();
 
     let restaurants: Restaurant[] = [];
 
-    models.map((model) => {
+    models.forEach((model) => {
       const restaurant = new Restaurant({
         id: new Id(model.id),
         name: model.name,
@@ -115,7 +114,7 @@ export default class RestaurantRepository implements RestaurantGateway {
 
     let reviews: Review[] = [];
     let starsReceived: number = 0;
-    model.reviews.map((rev) => {
+    model.reviews.forEach((rev) => {
       const review = new Review({
         id: new Id(rev.id),
         clientId: rev.clientId,

@@ -1,11 +1,10 @@
 import Id from "../../@shared/domain/value-object/id.value-object";
 import Review from "../domain/review.entity";
-import reviewEntity from "../domain/review.entity";
 import ReviewGateway from "../gateway/review.gateway";
 import { ReviewModel } from "./review.model";
 
 export default class ReviewRepository implements ReviewGateway {
-  async create(review: reviewEntity): Promise<reviewEntity> {
+  async create(review: Review): Promise<Review> {
     const model = await ReviewModel.create({
       id: review.id.id,
       clientId: review.clientId,
@@ -24,7 +23,7 @@ export default class ReviewRepository implements ReviewGateway {
       restaurantId: model.restaurantId,
     });
   }
-  async find(id: string): Promise<reviewEntity> {
+  async find(id: string): Promise<Review> {
     const review = await ReviewModel.findOne({ where: { id } });
 
     if (!review) {
@@ -39,11 +38,11 @@ export default class ReviewRepository implements ReviewGateway {
       stars: review.stars,
     });
   }
-  async findAll(): Promise<reviewEntity[]> {
+  async findAll(): Promise<Review[]> {
     const reviews = await ReviewModel.findAll();
 
     let allReviews: Review[] = [];
-    reviews.map((review) => {
+    reviews.forEach((review) => {
       const newRev = new Review({
         id: new Id(review.id),
         clientId: review.clientId,

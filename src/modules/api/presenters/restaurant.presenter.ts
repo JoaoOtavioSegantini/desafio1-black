@@ -12,12 +12,14 @@ export default class RestaurantPresenter {
 
     return toXML(
       {
-        restaurant: data.map((res) => ({
-          id: res.id,
-          name: res.name,
-          phone: res.phone,
-          description: res.description,
-          address: res.address,
+        restaurants: data.map((res) => ({
+          restaurant: {
+            id: res.id,
+            name: res.name,
+            phone: res.phone,
+            description: res.description,
+            address: res.address,
+          },
         })),
       },
       xmlOption

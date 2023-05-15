@@ -27,9 +27,15 @@ describe("E2E test for restaurant", () => {
 
   it("should not create a restaurant", async () => {
     const response = await request(app).post("/restaurants").send({
-      name: "Ficticious restaurant name",
+      name: "Fictitious restaurant name",
     });
     expect(response.status).toBe(500);
+    expect(response.body).toStrictEqual({
+      errors: [
+        { context: "restaurant", message: "Phone is required" },
+        { context: "restaurant", message: "Address is required" },
+      ],
+    });
   });
 
   it("should list all restaurants", async () => {
@@ -210,21 +216,17 @@ describe("E2E test for restaurant", () => {
         comment: "Muito bom!!!",
       });
 
-      await request(app)
-      .post(`/restaurants/${restaurantId2}/reviews`)
-      .send({
-        clientId: id2,
-        stars: 3,
-        comment: "Muito bom!!!",
-      });
+    await request(app).post(`/restaurants/${restaurantId2}/reviews`).send({
+      clientId: id2,
+      stars: 3,
+      comment: "Muito bom!!!",
+    });
 
-       await request(app)
-      .post(`/restaurants/${restaurantId3}/reviews`)
-      .send({
-        clientId: id2,
-        stars: 5,
-        comment: "Muito bom!!!",
-      });
+    await request(app).post(`/restaurants/${restaurantId3}/reviews`).send({
+      clientId: id2,
+      stars: 5,
+      comment: "Muito bom!!!",
+    });
 
     expect(response.status).toBe(200);
 
