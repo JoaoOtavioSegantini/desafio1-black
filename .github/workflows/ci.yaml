@@ -3,7 +3,9 @@ on:
  pull_request:
    branches:
      - main
+
 jobs:
+  
   sonarqube:
     name: sonarqube
     runs-on: ubuntu-latest
@@ -15,11 +17,6 @@ jobs:
         run: yarn
       - name: Test and coverage
         run: yarn test --coverage
-      - name: SonarQube Scan
-        uses: sonarsource/sonarcloud-github-action@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       - name: Jest Coverage Comment
         uses: MishaKav/jest-coverage-comment@main
         with:
@@ -34,3 +31,8 @@ jobs:
           junitxml-path: ./junit.xml
           coverage-title: Coverage Files
           coverage-path: ./coverage/coverage.txt
+      - name: SonarQube Scan
+        uses: sonarsource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
