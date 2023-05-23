@@ -6,7 +6,6 @@
 export default {
   transform: {
     "^.+\.(t|j)sx?$": ["@swc/jest"],
-    
   },
   // All imported modules in your tests should be mocked automatically
   // automock: false,
@@ -38,12 +37,12 @@ export default {
   coverageProvider: "v8",
 
   // A list of reporter names that Jest uses when writing coverage reports
-  // coverageReporters: [
-  //   "json",
-  //   "text",
-  //   "lcov",
-  //   "clover"
-  // ],
+  coverageReporters: [
+    "json",
+    ["text", { file: 'coverage.txt' }],
+    "lcov",
+    "clover"
+  ],
 
   // An object that configures minimum threshold enforcement for coverage results
   // coverageThreshold: undefined,
@@ -104,7 +103,7 @@ export default {
 
   // Use this configuration option to add custom reporters to Jest
   // reporters: undefined,
-
+  reporters: ["default", "jest-junit"],
   // Automatically reset mock state before every test
   // resetMocks: false,
 

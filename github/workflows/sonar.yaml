@@ -1,0 +1,36 @@
+name: ci-sonarcloud-coverage
+on:
+ pull_request:
+   branches:
+     - develop
+jobs:
+  sonarqube:
+    name: sonarqube
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0 
+      - name: Install dependencies
+        run: yarn
+      - name: Test and coverage
+        run: yarn test --coverage
+      - name: SonarQube Scan
+        uses: sonarsource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      - name: Jest Coverage Comment
+        uses: MishaKav/jest-coverage-comment@main
+        with:
+          coverage-summary-path: ./coverage/coverage-final.json
+          title: My Jest Coverage Comment
+          summary-title: Tests Summary
+          badge-title: Coverage
+          hide-comment: false
+          create-new-comment: false
+          hide-summary: false
+          junitxml-title: Tests description
+          junitxml-path: ./junit.xml
+          coverage-title: Coverage Files
+          coverage-path: ./coverage/coverage.txt

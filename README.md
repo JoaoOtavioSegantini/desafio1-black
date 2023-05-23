@@ -1,0 +1,1 @@
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=JoaoOtavioSegantini_desafio1-black&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=JoaoOtavioSegantini_desafio1-black)
