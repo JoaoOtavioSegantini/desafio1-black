@@ -4,8 +4,9 @@ on:
    branches:
      - main
 jobs:
-  sonarqube:
-    name: sonarqube
+
+  unit-test:
+    name: unit-test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -15,6 +16,14 @@ jobs:
         run: yarn
       - name: Test and coverage
         run: yarn test --coverage
+
+  sonarqube:
+    name: sonarqube
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 
       - name: SonarQube Scan
         uses: sonarsource/sonarcloud-github-action@master
         env:
