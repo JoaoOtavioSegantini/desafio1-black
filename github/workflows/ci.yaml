@@ -2,7 +2,7 @@ name: ci-sonarcloud-coverage
 on:
  pull_request:
    branches:
-     - develop
+     - main
 jobs:
   sonarqube:
     name: sonarqube
