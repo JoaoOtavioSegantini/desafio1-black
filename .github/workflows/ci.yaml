@@ -3,10 +3,11 @@ on:
  pull_request:
    branches:
      - main
-jobs:
 
-  unit-test:
-    name: unit-test
+jobs:
+  
+  sonarqube:
+    name: sonarqube
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -16,19 +17,6 @@ jobs:
         run: yarn
       - name: Test and coverage
         run: yarn test --coverage
-
-  sonarqube:
-    name: sonarqube
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0 
-      - name: SonarQube Scan
-        uses: sonarsource/sonarcloud-github-action@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       - name: Jest Coverage Comment
         uses: MishaKav/jest-coverage-comment@main
         with:
@@ -43,3 +31,8 @@ jobs:
           junitxml-path: ./junit.xml
           coverage-title: Coverage Files
           coverage-path: ./coverage/coverage.txt
+      - name: SonarQube Scan
+        uses: sonarsource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
