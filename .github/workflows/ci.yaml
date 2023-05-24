@@ -16,11 +16,11 @@ jobs:
       - name: Install dependencies
         run: yarn
       - name: Test and coverage
-        run: yarn test --coverage
+        run: yarn test --coverage --coverageDirectory=src/coverage
       - name: Jest Coverage Comment
         uses: MishaKav/jest-coverage-comment@main
         with:
-          coverage-summary-path: ./coverage/coverage-summary.json
+          coverage-summary-path: ./src/coverage/coverage-summary.json
           title: My Jest Coverage Comment
           summary-title: Tests Summary
           badge-title: Coverage
@@ -30,7 +30,7 @@ jobs:
           junitxml-title: Tests description
           junitxml-path: ./junit.xml
           coverage-title: Coverage Files
-          coverage-path: ./coverage/coverage.txt
+          coverage-path: ./src/coverage/coverage.txt
       - name: SonarQube Scan
         uses: sonarsource/sonarcloud-github-action@master
         env:
