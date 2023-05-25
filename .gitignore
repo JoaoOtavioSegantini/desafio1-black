@@ -5,3 +5,4 @@ dist
 coverage
 .scannerwork
 junit.xml
+test-report.xml

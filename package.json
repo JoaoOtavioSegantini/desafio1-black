@@ -12,13 +12,14 @@
     "@types/supertest": "^2.0.12",
     "jest": "^27.5.1",
     "jest-junit": "^16.0.0",
+    "jest-sonar-reporter": "^2.0.0",
     "supertest": "^6.2.3",
     "ts-node": "^10.6.0",
     "tslint": "^6.1.3",
     "typescript": "^4.5.5"
   },
   "scripts": {
-    "test": "export NODE_OPTIONS=--no-experimental-fetch && npm run tsc -- --noEmit && jest --testPathIgnorePatterns=./__tests__/",
+    "test": "npm run tsc -- --noEmit && jest --testPathIgnorePatterns=./__tests__/",
     "e2e": "npm run tsc -- --noEmit && jest src/modules/api/__tests__/customer.e2e.spec.ts && jest src/modules/api/__tests__/restaurant.e2e.spec.ts",
     "dev": "nodemon src/modules/api/server.ts",
     "tsc": "tsc"
