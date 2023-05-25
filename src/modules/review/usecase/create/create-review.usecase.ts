@@ -21,7 +21,7 @@ export default class CreateReviewUseCase {
       comment: input.comment,
     };
     const review = new Review(props);
-    this.ReviewRepository.create(review);
+    await this.ReviewRepository.create(review);
 
     return {
       id: review.id.id,

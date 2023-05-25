@@ -21,7 +21,7 @@ export default class CreateCustomerUseCase {
       phone: input.phone,
     };
     const customer = new Customer(props);
-    this._customerRepository.create(customer);
+    await this._customerRepository.create(customer);
 
     return {
       id: customer.id.id,

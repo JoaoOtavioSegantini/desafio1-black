@@ -5,7 +5,7 @@
 
 export default {
   transform: {
-    "^.+\.(t|j)sx?$": ["@swc/jest"],
+    "^.+.(t|j)sx?$": ["@swc/jest"],
   },
   // All imported modules in your tests should be mocked automatically
   // automock: false,
@@ -39,9 +39,9 @@ export default {
   // A list of reporter names that Jest uses when writing coverage reports
   coverageReporters: [
     "json-summary",
-    ["text", { file: 'coverage.txt' }],
+    ["text", { file: "coverage.txt" }],
     "lcov",
-    "clover"
+    "clover",
   ],
 
   // An object that configures minimum threshold enforcement for coverage results
@@ -103,7 +103,19 @@ export default {
 
   // Use this configuration option to add custom reporters to Jest
   // reporters: undefined,
-  reporters: ["default", "jest-junit"],
+  reporters: [
+    "default",
+    "jest-junit",
+    [
+      "jest-sonar",
+      {
+        outputDirectory: '.',
+        outputName: 'test-report.xml',
+        reportedFilePath: 'relative',
+        relativeRootDir: '<rootDir>/../',
+      },
+    ],
+  ],
   // Automatically reset mock state before every test
   // resetMocks: false,
 
@@ -163,7 +175,7 @@ export default {
   // testRegex: [],
 
   // This option allows the use of a custom results processor
-  testResultsProcessor: "jest-sonar-reporter",
+  //testResultsProcessor: "jest-sonar-reporter",
 
   // This option allows use of a custom test runner
   // testRunner: "jest-circus/runner",
