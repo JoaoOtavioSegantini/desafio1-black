@@ -20,7 +20,7 @@ export default class CreateRestaurantUseCase {
       description: input.description,
     };
     const restaurant = new Restaurant(props);
-    this.restaurantRepository.create(restaurant);
+    await this.restaurantRepository.create(restaurant);
 
     return {
       id: restaurant.id.id,
